@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="MainText_600_20">
+        <item name="android:fontFamily">@font/roboto_flex_semi_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor" tools:ignore="PrivateResource">?attr/textFillColor</item>
+    </style>
+    <style name="MainText_600_16">
+        <item name="android:fontFamily">@font/roboto_flex_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor" tools:ignore="PrivateResource">?attr/textFillColor</item>
+    </style>
+    <style name="MainText_600_14">
+        <item name="android:fontFamily">@font/roboto_flex_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor" tools:ignore="PrivateResource">?attr/textFillColor</item>
+    </style>
+
+    <style name="LoginText_400_12">
+        <item name="android:fontFamily">@font/roboto_flex_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor" tools:ignore="PrivateResource">?attr/textFillColor</item>
+    </style>
+
+    <style name="LoginText_red_500_14">
+        <item name="android:fontFamily">@font/roboto_flex_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_red_text</item>
+    </style>
+    <style name="ProfileText_400_14">
+        <item name="android:fontFamily">@font/roboto_flex_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?attr/textFillColor</item>
+    </style>
+    <style name="Text_700_10">
+        <item name="android:fontFamily">@font/roboto_flex_bold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">?attr/textFillColor</item>
+    </style>
+
+
+</resources>

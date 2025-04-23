@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Cartoonify" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_secondary</item>
+        <item name="colorOnPrimary">@color/color_primary</item>
+        <item name="colorOnBackground">@color/color_background</item>
+        <item name="textFillColor">@color/color_black</item>
+        <item name="headerLayout">@color/color_white</item>
+        <item name="android:textColorLink">@color/color_primary</item>
+        <item name="colorButtonNormal">@color/color_icon_background</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+
+        <item name="android:statusBarColor">@color/color_white</item>
+        <item name="android:navigationBarColor">@color/color_white</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightStatusBar" >true</item>
+        <item name="android:windowBackground">@color/color_white</item>
+
+    </style>
+    <style name="Theme.Cartoonify.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_secondary</item>
+        <item name="colorOnPrimary">@color/color_primary</item>
+        <item name="colorOnBackground">@color/color_background_dark</item>
+        <item name="colorButtonNormal">@color/color_icon_background_dark</item>
+        <item name="android:textColorLink">@color/color_primary</item>
+        <item name="textFillColor">@color/color_white</item>
+        <item name="headerLayout">@color/color_black</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+        <item name="android:statusBarColor">@color/color_black</item>
+        <item name="android:navigationBarColor">@color/color_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:windowBackground">@color/color_black</item>
+    </style>
+    <style name="Theme.SplashScreen.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/color_transparent</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/color_background</item>
+        <item name="android:navigationBarColor">@color/color_transparent</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+        <item name="android:windowLightStatusBar" >true</item>
+        <item name="android:windowFrame">@drawable/splash_screen</item>
+    </style>
+    <style name="cornerImage">
+        <item name="cornerSize">6dp</item>
+    </style>
+</resources>
