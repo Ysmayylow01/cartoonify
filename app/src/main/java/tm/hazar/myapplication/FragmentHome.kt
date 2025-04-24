@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
@@ -29,6 +30,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tm.hazar.myapplication.databinding.FragmentHomeBinding
+import tm.hazar.myapplication.network.RetrofitClient
 import java.io.File
 
 class FragmentHome : Fragment() {
@@ -129,19 +131,9 @@ class FragmentHome : Fragment() {
     }
 
     private fun cartoonifyImage(imageFile: File) {
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         b.progressBar.visibility = View.VISIBLE
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.ailabapi.com/")
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val service = retrofit.create(CartoonApi::class.java)
+        val service = RetrofitClient.instance.create(CartoonApi::class.java)
 
         val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
         val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
@@ -151,22 +143,30 @@ class FragmentHome : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val response = service.cartoonify(selectedApiKey, imagePart, typeBody)
-                if (response.isSuccessful) {
-                    imageUrl = response.body()?.data?.image_url
-                    Log.d("qwerty", "cartoonifyImage: $imageUrl")
-                    withContext(Dispatchers.Main) {
-                        b.progressBar.visibility = View.GONE
+                withContext(Dispatchers.Main) {
+                    b.progressBar.visibility = View.GONE
+                    if (response.isSuccessful && response.body() != null) {
+                        imageUrl = response.body()?.data?.image_url
                         val fragment = FragmentGenerate.newInstance(imageUrl ?: "")
                         parentFragmentManager.beginTransaction()
                             .replace(R.id.fragmentContainer, fragment)
                             .addToBackStack(null)
                             .commit()
+                    } else if (response.code() == 429) {
+                        Toast.makeText(requireContext(), "API açary çäklendirildi, başga API açary saýlaň!", Toast.LENGTH_LONG).show()
+                    } else {
+                        Log.e("RetrofitError", "Response failed: ${response.code()} ${response.message()}")
+                        Toast.makeText(requireContext(), "API nädogry jogap berdi", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
-                b.progressBar.visibility = View.GONE
-                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    b.progressBar.visibility = View.GONE
+                    Log.e("RetrofitException", "Exception: ${e.message}", e)
+                    Toast.makeText(requireContext(), "Baglanyşyk ýalňyşlygy: ${e.message}", Toast.LENGTH_LONG).show()
+                }
             }
         }
+
     }
 }
